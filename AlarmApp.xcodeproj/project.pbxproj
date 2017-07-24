@@ -11,6 +11,8 @@
 		4DD65DA11F2693D7009B264A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD65D9F1F2693D7009B264A /* Main.storyboard */; };
 		4DD65DA31F2693D7009B264A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DD65DA21F2693D7009B264A /* Assets.xcassets */; };
 		4DD65DA61F2693D7009B264A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD65DA41F2693D7009B264A /* LaunchScreen.storyboard */; };
+		4DD65DB01F269937009B264A /* AlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD65DAF1F269937009B264A /* AlarmListTableViewController.swift */; };
+		4DD65DB21F269A00009B264A /* AlarmDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD65DB11F269A00009B264A /* AlarmDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		4DD65DA21F2693D7009B264A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DD65DA51F2693D7009B264A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DD65DA71F2693D7009B264A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DD65DAF1F269937009B264A /* AlarmListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmListTableViewController.swift; sourceTree = "<group>"; };
+		4DD65DB11F269A00009B264A /* AlarmDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				4DD65D9F1F2693D7009B264A /* Main.storyboard */,
+				4DD65DAF1F269937009B264A /* AlarmListTableViewController.swift */,
+				4DD65DB11F269A00009B264A /* AlarmDetailTableViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -150,6 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD65DB21F269A00009B264A /* AlarmDetailTableViewController.swift in Sources */,
+				4DD65DB01F269937009B264A /* AlarmListTableViewController.swift in Sources */,
 				4DD65D9C1F2693D7009B264A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +324,7 @@
 				4DD65DAC1F2693D7009B264A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
