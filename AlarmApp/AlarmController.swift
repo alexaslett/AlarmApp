@@ -24,11 +24,11 @@ class AlarmController {
         return [wakeUp, lunchTime, sleepTime, anotherTime]
     }
     
-    
     //C
-    func addAlarm(fireTimeFromMidnight: TimeInterval, name: String) {
+    func addAlarm(fireTimeFromMidnight: TimeInterval, name: String) -> Alarm {
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
         alarms.append(alarm)
+        return alarm
     }
     
     
@@ -52,6 +52,9 @@ class AlarmController {
         alarms.remove(at: index)
     }
     
+    func toggleEnabled(for alarm: Alarm){
+        alarm.enabled = !alarm.enabled
+    }
     
     
 }

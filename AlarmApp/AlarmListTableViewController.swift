@@ -16,6 +16,11 @@ class AlarmListTableViewController: UITableViewController {
       
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: - IBOutlets
     
     
@@ -25,17 +30,18 @@ class AlarmListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return AlarmController.shared.mockAlarms.count
+        return AlarmController.shared.alarms.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? SwitchTableViewCell
-        let alarm = AlarmController.shared.mockAlarms[indexPath.row]
-        cell?.updateViews(with: alarm)
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? SwitchTableViewCell ?? SwitchTableViewCell()
+        cell.alarm = AlarmController.shared.alarms[indexPath.row]
+        cell.updateViews()
         
-        return cell ?? UITableViewCell()
+        cell.delegate = self
+        
+        return cell
     }
 
 
@@ -52,14 +58,28 @@ class AlarmListTableViewController: UITableViewController {
 
 
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toEditAlarm" {
+            guard let destinationVC = segue.destination as? AlarmDetailTableViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            destinationVC.alarm = AlarmController.shared.alarms[indexPath.row]
+        }
     }
-    */
 
 }
+
+// MARK: - SwitchTableViewCell delegat
+
+
+extension AlarmListTableViewController: SwitchTableViewCellDelegate {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let alarm = AlarmController.shared.alarms[indexPath.row]
+        AlarmController.shared.toggleEnabled(for: alarm)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+

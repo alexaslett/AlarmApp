@@ -8,16 +8,21 @@
 
 import UIKit
 
+protocol SwitchTableViewCellDelegate: class {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
+}
+
+
 class SwitchTableViewCell: UITableViewCell {
     
 
     var alarm: Alarm? {
         didSet{
-            updateViews(with: alarm)
+            updateViews()
         }
     }
     
-    
+    // MARK: - IBOutlets and IBActions
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -25,11 +30,16 @@ class SwitchTableViewCell: UITableViewCell {
    
    
     @IBAction func switchValueChanged(_ sender: Any) {
+        delegate?.switchCellSwitchValueChanged(cell: self)
     }
+    
+    // MARK: - Internal Properties
+    
+    weak var delegate: SwitchTableViewCellDelegate?
     
     // MARK: - Lifecycle
     
-    func updateViews(with alarm: Alarm? ) {
+    func updateViews() {
         guard let alarm = alarm else { return }
         timeLabel.text = alarm.fireTimeAsString
         nameLabel.text = alarm.name

@@ -59,7 +59,7 @@
                                     <outlet property="alarmSwitch" destination="aFh-y5-Ine" id="BYZ-9y-Hx4"/>
                                     <outlet property="nameLabel" destination="deN-ex-CR5" id="RRr-YF-yZ9"/>
                                     <outlet property="timeLabel" destination="SEJ-5y-GYB" id="fh5-Oc-TPb"/>
-                                    <segue destination="ksO-Kb-ToV" kind="show" id="Zrm-qy-ewO"/>
+                                    <segue destination="ksO-Kb-ToV" kind="show" identifier="toEditAlarm" id="Zrm-qy-ewO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -212,6 +212,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qTI-fu-a4u"/>
+        <segue reference="Zrm-qy-ewO"/>
     </inferredMetricsTieBreakers>
 </document>

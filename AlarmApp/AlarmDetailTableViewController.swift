@@ -10,51 +10,82 @@ import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
 
-    var alarm: Alarm?
+    var alarm: Alarm? {
+        didSet {
+            if isViewLoaded {
+                updateViews()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        updateViews()
     }
 
+    // MARK: - UpdateViews Function
+    
+    private func  updateViews(){
+        guard let alarm = alarm, let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight,
+        isViewLoaded else { disableButton.isHidden = true
+            return
+    }
+        datePicker.setDate(Date(timeInterval: alarm.fireTimeFromMidnight, since:thisMorningAtMidnight), animated: false)
+        alarmLabel.text = alarm.name
+        
+        disableButton.isHidden = false
+        if alarm.enabled {
+            disableButton.setTitle("Disable", for: UIControlState())
+            disableButton.setTitleColor(.white, for: UIControlState())
+            disableButton.backgroundColor = .red
+        } else {
+            disableButton.setTitle("Enable", for: UIControlState())
+            disableButton.setTitleColor(.blue, for: UIControlState())
+            disableButton.backgroundColor = .gray
+        }
+        
+        self.title = alarm.name
+        
+    }
+    
+    
     // MARK: - IBOutlets and IBActions
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var alarmLabel: UITextField!
     @IBOutlet weak var disableButton: UIButton!
     
-    @IBAction func enableButtonTapped(_ sender: Any) {
-    }
+    @IBAction func disableButtonTapped(_ sender: Any) {
+        guard let alarm = alarm else { return }
+        AlarmController.shared.toggleEnabled(for: alarm)
+        updateViews()
+        }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
+        guard let title = alarmLabel.text, let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else { return }
+        let timeIntervalSinceMidnight = datePicker.date.timeIntervalSince(thisMorningAtMidnight)
+        if let alarm = alarm {
+            AlarmController.shared.update(alarm: alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
+        } else {
+        let alarm = AlarmController.shared.addAlarm(fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
+        self.alarm = alarm
+        }
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 3
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 1
+//    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
-    }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
 
 
