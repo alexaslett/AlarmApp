@@ -25,8 +25,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5ym-fJ-lPg">
-                                            <rect key="frame" x="19" y="-3" width="94" height="54.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5ym-fJ-lPg">
+                                            <rect key="frame" x="19" y="-0.5" width="94" height="49.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-5y-GYB">
                                                     <rect key="frame" x="0.0" y="0.0" width="44.5" height="24"/>
@@ -35,7 +35,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deN-ex-CR5">
-                                                    <rect key="frame" x="0.0" y="34" width="94" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="29" width="94" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -155,7 +155,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="enableButtonTapped:" destination="ksO-Kb-ToV" eventType="touchUpInside" id="ogr-bx-ooS"/>
+                                                        <action selector="disableButtonTapped:" destination="ksO-Kb-ToV" eventType="touchUpInside" id="lrV-3L-MsK"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

@@ -24,6 +24,10 @@ class AlarmController {
         return [wakeUp, lunchTime, sleepTime, anotherTime]
     }
     
+    init(){
+        self.alarms = self.mockAlarms
+    }
+    
     //C
     func addAlarm(fireTimeFromMidnight: TimeInterval, name: String) -> Alarm {
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
